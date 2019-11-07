@@ -1,6 +1,5 @@
 from .models import Profile, Restaurant
-
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -18,7 +17,7 @@ def restaurants(request):
 
 def restaurant_detail(request, restaurant_id):
   restaurant = Restaurant.objects.get(id=restaurant_id)
-  return render(request, 'restaurant/detail.html', { 'restaurant': restaurant })
+  return render(request, 'restaurant/restaurantDetail.html', { 'restaurant': restaurant })
 
 class RestaurantCreate(LoginRequiredMixin, CreateView):
   model = Restaurant
@@ -29,6 +28,14 @@ class RestaurantCreate(LoginRequiredMixin, CreateView):
     return super().form_valid(form)
 
   success_url = '/restaurants/'
+
+class RestaurantUpdate(UpdateView):
+  model = Restaurant
+  fields = ['name', 'location', 'max_capacity', 'rating', 'opening_time', 'closing_time', 'description']
+
+class RestaurantDelete(DeleteView):
+  model = Restaurant
+  success_url = '/restaurants/'  
 
 def signup(request):
   if request.method == 'POST':

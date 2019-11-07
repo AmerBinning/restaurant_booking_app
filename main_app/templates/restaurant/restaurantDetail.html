@@ -28,4 +28,8 @@
     {% endif %}
 </p>
 <p>Description: {{restaurant.description}}</p>
+<div class="card-action">
+    <a href="{% url 'restaurants_update' restaurant.id %}">Update</a>
+    <a href="{% url 'restaurants_delete' restaurant.id %}">Delete</a>
+</div>
 {% endblock %}

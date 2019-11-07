@@ -20,7 +20,7 @@ class Restaurant(models.Model):
       return self.name
   
   def get_absolute_url(self):
-      return reverse('detail', kwargs={'restaurant_id': self.id})
+      return reverse('restaurantDetail', kwargs={'restaurant_id': self.id})
 
 class Menu_Item(models.Model):
   restaurant = models.ForeignKey(Restaurant,on_delete=models.CASCADE)
