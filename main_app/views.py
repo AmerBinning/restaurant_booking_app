@@ -17,7 +17,7 @@ def restaurants(request):
 
 def restaurant_detail(request, restaurant_id):
   restaurant = Restaurant.objects.get(id=restaurant_id)
-  return render(request, 'restaurant/restaurantDetail.html', { 'restaurant': restaurant })
+  return render(request, 'restaurant/detail.html', { 'restaurant': restaurant })
 
 class RestaurantCreate(LoginRequiredMixin, CreateView):
   model = Restaurant
